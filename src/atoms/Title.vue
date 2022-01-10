@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="title">
+    {{ title }}
   </div>
 </template>
 
@@ -8,9 +8,17 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "About",
+  name: "Title",
+  props: {
+    title: String,
+  },
   setup() {
     return {};
   },
 });
 </script>
+<style>
+.title {
+  font-size: 1em;
+}
+</style>

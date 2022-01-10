@@ -1,10 +1,23 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="nav" class="view">
+    <Header></Header>
+    <router-view />
   </div>
-  <router-view />
 </template>
+<script lang="ts">
+import { defineComponent } from "vue";
+import Header from "@/organisms/Header.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    Header,
+  },
+  setup() {
+    return {};
+  },
+});
+</script>
 
 <style>
 #app {
@@ -13,6 +26,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.view {
+  margin: 0 auto;
+  width: 320px;
 }
 
 #nav {
