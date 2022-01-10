@@ -2,16 +2,19 @@
   <div id="nav" class="view">
     <Header></Header>
     <router-view />
+    <Footer></Footer>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import Header from "@/organisms/Header.vue";
+import Footer from "@/organisms/Footer.vue";
 
 export default defineComponent({
   name: "App",
   components: {
     Header,
+    Footer,
   },
   setup() {
     return {};

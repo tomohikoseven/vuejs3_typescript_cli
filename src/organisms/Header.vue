@@ -25,6 +25,8 @@ export default defineComponent({
 <style>
 .wrapper {
   display: flex;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 5px;
 }
 .wrapper > div {
   flex: 1;
