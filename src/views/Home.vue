@@ -25,69 +25,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, Ref } from "vue";
-
-interface Task {
-  status: boolean;
-  name: string;
-}
-
-const useTaskList = () => {
-  const tasksRef: Ref<Task[]> = ref<Task[]>([]);
-
-  const toggleTask = (task: Task, status: boolean) => {
-    const index = tasksRef.value.indexOf(task);
-    tasksRef.value.splice(index, 1, { ...task, status: status });
-  };
-
-  return {
-    tasksRef,
-    toggleTask,
-  };
-};
-
-const useAddingTask = (tasksRef: Ref<Task[]>) => {
-  const taskNameRef: Ref<string> = ref("");
-
-  const addTask = () => {
-    tasksRef.value.push({
-      name: taskNameRef.value,
-      status: false,
-    });
-    taskNameRef.value = "";
-  };
-
-  return {
-    taskNameRef,
-    addTask,
-  };
-};
-
-const useFilter = (tasks: Ref<Task[]> = ref([])) => {
-  const tasksRef: Ref<Task[]> = tasks;
-
-  const doingTasks = computed(() => tasksRef.value.filter((t: Task) => !t.status));
-  const completedTasks = computed(() => tasksRef.value.filter((t: Task) => t.status));
-
-  return {
-    doingTasks,
-    completedTasks,
-  };
-};
-
-const useSearcher = (tasks: Ref<Task[]> = ref([])) => {
-  const searchTextRef = ref("");
-  const tasksRef = tasks;
-
-  const search = computed(() =>
-    tasksRef.value.filter((t: Task) => t.name.includes(searchTextRef.value))
-  );
-
-  return {
-    searchTextRef,
-    search,
-  };
-};
+import { defineComponent } from "vue";
+import useFilter from "@/composables/use-filter";
+import useTaskList from "@/composables/use-task-list";
+import useAddingTask from "@/composables/use-adding-task";
+import useSearcher from "@/composables/use-searcher";
 
 export default defineComponent({
   name: "About",
