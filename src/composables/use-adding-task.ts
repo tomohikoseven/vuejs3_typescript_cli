@@ -1,22 +1,18 @@
-import { Ref, ref } from "vue";
+import { Ref } from "vue";
 import Task from "@/data/Task";
 
 export default function useAddingTask(tasksRef: Ref<Task[]>): {
-  taskNameRef: Ref<string>;
-  addTask: () => void;
+  addTask: (taskName: string) => void;
 } {
-  const taskNameRef: Ref<string> = ref("");
-
-  const addTask = () => {
+  const addTask = (taskName: string) => {
+    console.log(taskName);
     tasksRef.value.push({
-      name: taskNameRef.value,
+      name: taskName,
       status: false,
     });
-    taskNameRef.value = "";
   };
 
   return {
-    taskNameRef,
     addTask,
   };
 }

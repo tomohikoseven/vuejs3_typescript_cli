@@ -6,11 +6,12 @@ export default function useSearcher(tasks: Ref<Task[]> = ref([])): {
   search: ComputedRef<Task[]>;
 } {
   const searchTextRef = ref("");
-  const tasksRef = tasks;
+  // const tasksRef = tasks;
 
-  const search = computed(() =>
-    tasksRef.value.filter((t: Task) => t.name.includes(searchTextRef.value))
-  );
+  const search = computed(() => {
+    console.log(tasks.value);
+    return tasks.value.filter((t: Task) => t.name.includes(searchTextRef.value));
+  });
 
   return {
     searchTextRef,
