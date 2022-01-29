@@ -1,17 +1,17 @@
 <template>
   <div>
-    <add-task @add-task="addTask" />
+    <add-task :add-task="addTask" />
     <div class="wrapper">
       <task-row
         taskStatus="DOING"
         :tasks="doingTasks"
-        @toggle-task="toggleTask"
+        :toggle-task="toggleTask"
         :toggleStatus="true"
       />
       <task-row
         taskStatus="COMPLETE"
         :tasks="completeTasks"
-        @toggle-task="toggleTask"
+        :toggle-task="toggleTask"
         :toggleStatus="false"
       />
     </div>
@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts">
-
-import { defineComponent, ref, Ref, computed } from "vue";
-import AddTask from "@/organisms/AddTask.vue";
+import { defineComponent, ref, Ref } from "vue";
 import { Task } from "@/interface/Task";
-import { addingTask } from "@/composable/add-task";
+import AddTask from "@/organisms/AddTask.vue";
 import TaskRow from "@/organisms/TaskRow.vue";
+import { addingTask } from "@/composable/add-task";
 import { togglingTask } from "@/composable/toggle-task";
+import { doFilter } from "@/composable/do-filter";
 
 export default defineComponent({
   components: {
@@ -36,13 +36,10 @@ export default defineComponent({
     const tasks: Ref<Task[]> = ref<Task[]>([]);
     const { addTask } = addingTask(tasks);
     const { toggleTask } = togglingTask(tasks);
-
-    const doingTasks = computed(() => tasks.value.filter((task: Task) => !task.status));
-    const completeTasks = computed(() => tasks.value.filter((task: Task) => task.status));
-
+    const { doingTasks, completeTasks } = doFilter(tasks);
 
     return {
-      // data
+      // computed
       doingTasks,
       completeTasks,
 

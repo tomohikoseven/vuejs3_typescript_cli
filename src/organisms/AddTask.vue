@@ -1,7 +1,7 @@
 <template>
   <div>
     <input type="text" v-model="taskNameRef" />
-    <button @click="addTask">Add</button>
+    <button @click="addTask(taskNameRef)">Add</button>
   </div>
 </template>
 
@@ -11,20 +11,15 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   props: {
     addTask: {
-      type:Function,
+      type: Function,
       required: true,
     },
   },
-  setup(_, context) {
+  setup() {
     const taskNameRef = ref("");
-
-    const addTask = () => {
-      context.emit("add-task", taskNameRef.value);
-    };
 
     return {
       taskNameRef,
-      // addTask,
     };
   },
 });

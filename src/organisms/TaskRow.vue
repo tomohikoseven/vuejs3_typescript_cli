@@ -4,14 +4,13 @@
     <ul>
       <li v-for="(task, index) of tasks" :key="index">
         {{ task.name }}
-        <button @click="toggleTask(task, toggleStatus)">Toggle</button>
+        <button @click="togglingTask(task, toggleStatus)">Toggle</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { Task } from "@/interface/Task";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -24,19 +23,17 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+    togglingTask: {
+      type: Function,
+      required: true,
+    },
     toggleStatus: {
       type: Boolean,
       required: true,
-    }
+    },
   },
-  setup(prop, context) {
-    function toggleTask(task: Task, status: boolean) {
-      task.status = status;
-      context.emit("toggle-task", task);
-    }
-    return {
-      toggleTask,
-    };
+  setup() {
+    return {};
   },
 });
 </script>
