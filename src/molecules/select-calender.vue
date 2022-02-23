@@ -6,14 +6,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import selectDate from "@/atoms/select-date.vue";
 
 export default defineComponent({
   components: {
     selectDate,
   },
-  emits: ["rewrite"],
+  emits: ["update:modelValue"],
   setup(_, { emit }) {
     const year = ref("");
     const month = ref("");
@@ -23,12 +23,8 @@ export default defineComponent({
     const months = ["01", "02", "03"];
     const days = ["01", "31"];
 
-    // function modelUpdate(e:string) {
-    //   console.log(e);
-    //   year.value = e;
-    // }
     watch([year, month, day], () => {
-      emit("rewrite", year.value + month.value + day.value);
+      emit("update:modelValue", year.value + month.value + day.value);
     });
 
     return {
