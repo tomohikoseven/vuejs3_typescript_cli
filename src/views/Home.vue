@@ -10,23 +10,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-// import  myfocus from "@/directives/cuctom-focus.vue";
 
 export default defineComponent({
   name: "About",
-  // directives: {
-  //   myfocus,
-  // },
   setup() {
     return {};
-  },
-  directives: {
-    focus: {
-      // directive definition
-      mounted(el) {
-        el.focus();
-      },
-    },
   },
 });
 </script>
