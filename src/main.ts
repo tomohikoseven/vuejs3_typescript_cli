@@ -3,4 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(store).use(router).mount("#app");
+const app = createApp(App);
+app.use(store).use(router);
+// app.config.globalProperties.$filters = {
+//   formatNumber(num: string) {
+//     return "$" + num;
+//   },
+// };
+app.mount("#app");
